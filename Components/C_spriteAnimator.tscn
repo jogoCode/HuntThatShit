@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gtsw036h5jih"]
+
+[ext_resource type="Script" path="res://Scripts/Animations/SpriteAnimator.gd" id="1_3x55a"]
+
+[node name="SpriteAnimator" type="Node"]
+script = ExtResource("1_3x55a")
