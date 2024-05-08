@@ -12,12 +12,15 @@ func _ready():
 
 func _process(delta):
 	var velLength = _ownerCharacter.velocity.length();
-	if(_ownerCharacter.velocity.length() == 0):
+	if(velLength == 0):
 		_animatedSprite.play("Idle");
-	if(_ownerCharacter.velocity.length() != 0):
+	if(velLength != 0):
 		_animatedSprite.play("Walk");
-	_animatedSprite.speed_scale = velLength/2*delta;
 	
+	#Gestion de la vitesse d'animation en fonction de la vitesse de déplacement
+	_animatedSprite.speed_scale = velLength/2*delta;
+	 
+	#Gestion de la direction du sprite
 	if(_ownerCharacter.velocity.x < 0):
 		_animatedSprite.flip_h = true;
 	if(_ownerCharacter.velocity.x > 0):

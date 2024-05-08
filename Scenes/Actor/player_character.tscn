@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=8 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_nusnd"]
-[ext_resource type="Texture2D" uid="uid://dk5brcthgoxil" path="res://icon.svg" id="2_b54jm"]
 [ext_resource type="Texture2D" uid="uid://cg03p3lpi662i" path="res://Sprites/Player-sheet.png" id="3_ayexn"]
 [ext_resource type="Script" path="res://Scripts/Animations/SpriteAnimator.gd" id="4_ma7q1"]
 
@@ -43,12 +42,9 @@ script = ExtResource("1_nusnd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v2a1b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_b54jm")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1ux0p")
 animation = &"Idle"
 frame_progress = 0.924102

@@ -1,12 +1,6 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+@export var SPEED:float = 300;
 
 func _physics_process(delta):
 
@@ -16,7 +10,7 @@ func _physics_process(delta):
 		
 	else:
 		velocity = lerp(velocity,Vector2.ZERO,delta*50);
-		velocity = clamp(velocity,Vector2.ZERO,Vector2(1.79769e308,1.79769e308));
+		velocity = Vector2(int(velocity.x),int(velocity.y));
 
 	print(velocity.length())
 	

@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://darn1lluv21sw"]
+[gd_scene load_steps=4 format=3 uid="uid://darn1lluv21sw"]
 
 [ext_resource type="PackedScene" uid="uid://cgjq1wy3h3251" path="res://Scenes/Actor/player_character.tscn" id="1_n6aj8"]
+[ext_resource type="PackedScene" uid="uid://vlinps2ip0pr" path="res://Scenes/Actor/Camera.tscn" id="2_1oyuw"]
+[ext_resource type="Texture2D" uid="uid://edtndsogn83t" path="res://Sprites/PNG/Green/texture_03.png" id="3_obstj"]
 
 [node name="Main" type="Node2D"]
 
+[node name="Texture03" type="Sprite2D" parent="."]
+position = Vector2(20, 46)
+texture = ExtResource("3_obstj")
+
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_n6aj8")]
+SPEED = 150.0
+
+[node name="Camera" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("2_1oyuw")]
+position_smoothing_enabled = true
+_target = NodePath("../PlayerCharacter")
+_moveSpeed = 1.0
