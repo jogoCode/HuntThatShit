@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1fe7g0ggkwc4"]
+
+[ext_resource type="Script" path="res://Scripts/Weapon/Weapon.gd" id="1_jvaor"]
+[ext_resource type="Texture2D" uid="uid://bnq0vgvwi3xs2" path="res://Sprites/Bow/BowTemp.png" id="2_k76ub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bs3a"]
+atlas = ExtResource("2_k76ub")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpqfu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bs3a")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_jvaor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 1.875)
+sprite_frames = SubResource("SpriteFrames_bpqfu")
+animation = &"Idle"
+
+[connection signal="Shoot" from="." to="." method="_on_shoot"]
