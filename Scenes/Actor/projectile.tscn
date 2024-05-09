@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds0flb5v7c174"]
+
+[ext_resource type="Script" path="res://Scripts/Weapon/Projectile.gd" id="1_j4r73"]
+[ext_resource type="Texture2D" uid="uid://dca5j68i6asip" path="res://Sprites/Bow/Arrow.png" id="1_vo0n1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiat6"]
+size = Vector2(35, 12)
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_j4r73")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_vo0n1")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_uiat6")

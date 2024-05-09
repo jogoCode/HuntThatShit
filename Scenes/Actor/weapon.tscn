@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1fe7g0ggkwc4"]
+[gd_scene load_steps=10 format=3 uid="uid://b1fe7g0ggkwc4"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon/Weapon.gd" id="1_jvaor"]
+[ext_resource type="PackedScene" uid="uid://ds0flb5v7c174" path="res://Scenes/Actor/projectile.tscn" id="2_2uwmm"]
 [ext_resource type="Texture2D" uid="uid://bnq0vgvwi3xs2" path="res://Sprites/Bow/BowTemp.png" id="2_k76ub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bs3a"]
@@ -53,11 +54,12 @@ animations = [{
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_jvaor")
+_arrowScene = ExtResource("2_2uwmm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(15, 0)
-scale = Vector2(2, 1)
+scale = Vector2(3, 1.5)
 sprite_frames = SubResource("SpriteFrames_bpqfu")
 animation = &"Shoot"
 frame_progress = 0.642993

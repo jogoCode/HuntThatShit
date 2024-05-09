@@ -4,6 +4,12 @@ signal Shoot();
 signal Released();
 signal ChangedState();
 
+@export var _arrowScene:PackedScene;
+
+var _direction:Vector2
+
+signal createArrow(arrow);
+
 enum weaponState{
 	DISABLE,
 	ACTIVE
@@ -17,13 +23,13 @@ func _ready():
 
 
 func _process(delta):
-	look_at(get_global_mouse_position());
+	_direction = get_global_mouse_position();
+	look_at(_direction);
 	WeaponStateManager()
 	#--------Temporaire
 	print($AnimatedSprite2D.frame)
 	if($AnimatedSprite2D.frame == 3):
 		$AnimatedSprite2D.frame = 3;
-
 
 func WeaponStateManager():
 	match(_currentState):
@@ -31,7 +37,6 @@ func WeaponStateManager():
 			hide();
 		weaponState.ACTIVE:
 			show();
-
 
 func EchangeState():
 	match(_currentState):
@@ -43,12 +48,13 @@ func EchangeState():
 func _on_changed_state():
 	EchangeState();
 
-
-
 func _on_shoot():
 	$AnimatedSprite2D.speed_scale = 1;
 	$AnimatedSprite2D.play("Shoot");
 
 func _on_released():
+	var arrow = _arrowScene.instantiate();
+	arrow.transform = global_transform;
+	createArrow.emit(arrow);
 	$AnimatedSprite2D.frame = 0;
 	$AnimatedSprite2D.speed_scale = 0;
