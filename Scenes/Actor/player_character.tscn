@@ -1,25 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=15 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_nusnd"]
-[ext_resource type="Texture2D" uid="uid://cg03p3lpi662i" path="res://Sprites/Player-sheet.png" id="3_ayexn"]
+[ext_resource type="Texture2D" uid="uid://b1cfitwycfiol" path="res://Sprites/BodySplit/Body.png" id="2_khuxu"]
+[ext_resource type="Texture2D" uid="uid://dn5ww0k6xtocn" path="res://Sprites/BodySplit/Foot.png" id="3_pe0fk"]
 [ext_resource type="PackedScene" uid="uid://b1fe7g0ggkwc4" path="res://Scenes/Actor/weapon.tscn" id="4_5o2q4"]
-[ext_resource type="Script" path="res://Scripts/Animations/SpriteAnimator.gd" id="4_ma7q1"]
+[ext_resource type="Script" path="res://Scripts/Animations/SplitSpriteAnimator.gd" id="5_ncxme"]
+[ext_resource type="Script" path="res://Scripts/Player/S_inputManager.gd" id="6_55npj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2a1b"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wanu7"]
-atlas = ExtResource("3_ayexn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3mhm"]
+atlas = ExtResource("2_khuxu")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a5yom"]
-atlas = ExtResource("3_ayexn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y03vs"]
+atlas = ExtResource("2_khuxu")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1ux0p"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3bl43"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wanu7")
+"texture": SubResource("AtlasTexture_v3mhm")
 }],
 "loop": true,
 "name": &"Idle",
@@ -27,10 +29,44 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wanu7")
+"texture": SubResource("AtlasTexture_v3mhm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a5yom")
+"texture": SubResource("AtlasTexture_y03vs")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wu3t"]
+atlas = ExtResource("3_pe0fk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbcdl"]
+atlas = ExtResource("3_pe0fk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoss0"]
+atlas = ExtResource("3_pe0fk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ux0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wu3t")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbcdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoss0")
 }],
 "loop": true,
 "name": &"Walk",
@@ -43,16 +79,28 @@ script = ExtResource("1_nusnd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v2a1b")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BodyAnimatedSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_3bl43")
+animation = &"Idle"
+
+[node name="FootAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1ux0p")
-animation = &"Idle"
-frame_progress = 0.924102
-
-[node name="SpriteAnimator" type="Node" parent="." node_paths=PackedStringArray("_ownerCharacter", "_animatedSprite")]
-script = ExtResource("4_ma7q1")
-_ownerCharacter = NodePath("..")
-_animatedSprite = NodePath("../AnimatedSprite2D")
+animation = &"Walk"
 
 [node name="Weapon" parent="." instance=ExtResource("4_5o2q4")]
+
+[node name="SplitSpriteAnimator" type="Node2D" parent="." node_paths=PackedStringArray("_staticParts", "_turnParts", "_ownerCharacter", "_animatedSprite")]
+script = ExtResource("5_ncxme")
+_staticParts = [NodePath("../FootAnimatedSprite2D")]
+_turnParts = [NodePath("../BodyAnimatedSprite")]
+_ownerCharacter = NodePath("..")
+_animatedSprite = [NodePath("../BodyAnimatedSprite"), NodePath("../FootAnimatedSprite2D")]
+
+[node name="InputManager" type="Node" parent="." node_paths=PackedStringArray("_playerCharacter", "_Weapon")]
+script = ExtResource("6_55npj")
+_playerCharacter = NodePath("..")
+_Weapon = NodePath("../Weapon")
