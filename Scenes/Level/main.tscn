@@ -1,18 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://darn1lluv21sw"]
+[gd_scene load_steps=6 format=3 uid="uid://darn1lluv21sw"]
 
 [ext_resource type="PackedScene" uid="uid://cgjq1wy3h3251" path="res://Scenes/Actor/player_character.tscn" id="1_n6aj8"]
 [ext_resource type="PackedScene" uid="uid://vlinps2ip0pr" path="res://Nodes/C_Camera.tscn" id="2_1oyuw"]
 [ext_resource type="Texture2D" uid="uid://edtndsogn83t" path="res://Sprites/PNG/Green/texture_03.png" id="3_obstj"]
 [ext_resource type="Script" path="res://Scripts/Weapon/ArrowFactory.gd" id="4_4hq65"]
+[ext_resource type="PackedScene" uid="uid://b6vyxdgeh2jk3" path="res://Scenes/Actor/mannequin.tscn" id="5_j3bcm"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Texture03" type="Sprite2D" parent="."]
 position = Vector2(20, 46)
 texture = ExtResource("3_obstj")
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_n6aj8")]
-SPEED = 150.0
 
 [node name="Camera" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("2_1oyuw")]
 _target = NodePath("../PlayerCharacter")
@@ -21,6 +19,11 @@ _moveSpeed = 2.0
 [node name="ArrowFactory" type="Node2D" parent="."]
 script = ExtResource("4_4hq65")
 metadata/_edit_lock_ = true
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_n6aj8")]
+
+[node name="Mannequin" parent="." instance=ExtResource("5_j3bcm")]
+position = Vector2(281, 47)
 
 [connection signal="createArrow" from="PlayerCharacter/Weapon" to="ArrowFactory" method="_on_weapon_create_arrow"]
 

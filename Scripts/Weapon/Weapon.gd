@@ -19,6 +19,7 @@ var _currentState:weaponState = weaponState.DISABLE;
 
 func _ready():
 	_currentState = weaponState.ACTIVE;
+	$AnimatedSprite2D.frame = 1;
 	$AnimatedSprite2D.speed_scale = 0;
 
 
@@ -27,9 +28,8 @@ func _process(delta):
 	look_at(_direction);
 	WeaponStateManager()
 	#--------Temporaire
-	print($AnimatedSprite2D.frame)
-	if($AnimatedSprite2D.frame == 3):
-		$AnimatedSprite2D.frame = 3;
+	if($AnimatedSprite2D.frame == 4):
+		$AnimatedSprite2D.frame = 4;
 
 func WeaponStateManager():
 	match(_currentState):
@@ -54,7 +54,11 @@ func _on_shoot():
 
 func _on_released():
 	var arrow = _arrowScene.instantiate();
+	arrow._speed = arrow._speed*$AnimatedSprite2D.frame/2;
+	if($AnimatedSprite2D.frame == 4):
+		arrow._speed = arrow._speed*2;
 	arrow.transform = global_transform;
+	arrow._owner = get_parent();
 	createArrow.emit(arrow);
-	$AnimatedSprite2D.frame = 0;
+	$AnimatedSprite2D.frame = 1;
 	$AnimatedSprite2D.speed_scale = 0;

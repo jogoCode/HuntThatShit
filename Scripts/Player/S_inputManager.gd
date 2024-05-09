@@ -1,9 +1,11 @@
 extends Node
+class_name InputManager
 
 @export var _playerCharacter:PlayerCharacter;
 @export var _Weapon:Node2D;
 
 func _ready():
+	_playerCharacter = get_parent();
 	if(_playerCharacter == null):
 		push_error("PlayerCharacter missing please assign a player character node");
 

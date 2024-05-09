@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=15 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="1_wi2ah"]
-[ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_xhs42"]
 [ext_resource type="Texture2D" uid="uid://b1cfitwycfiol" path="res://Sprites/BodySplit/Body.png" id="2_khuxu"]
 [ext_resource type="Texture2D" uid="uid://dn5ww0k6xtocn" path="res://Sprites/BodySplit/Foot.png" id="3_pe0fk"]
 [ext_resource type="PackedScene" uid="uid://b1fe7g0ggkwc4" path="res://Scenes/Actor/weapon.tscn" id="4_5o2q4"]
@@ -75,7 +74,8 @@ animations = [{
 }]
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
-script = ExtResource("1_xhs42")
+script = ExtResource("1_wi2ah")
+_hp = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v2a1b")
@@ -101,10 +101,12 @@ _turnParts = [NodePath("../BodyAnimatedSprite")]
 _ownerCharacter = NodePath("..")
 _animatedSprite = [NodePath("../BodyAnimatedSprite"), NodePath("../FootAnimatedSprite2D")]
 
+[node name="HealhSystem" type="Node" parent="."]
+script = ExtResource("1_wi2ah")
+
 [node name="InputManager" type="Node" parent="." node_paths=PackedStringArray("_playerCharacter", "_Weapon")]
 script = ExtResource("6_55npj")
 _playerCharacter = NodePath("..")
 _Weapon = NodePath("../Weapon")
 
-[node name="HealhSystem" type="Node" parent="."]
-script = ExtResource("1_wi2ah")
+[connection signal="ApplyDamageEvent" from="HealhSystem" to="HealhSystem" method="_on_apply_damage_event"]

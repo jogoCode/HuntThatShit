@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6vyxdgeh2jk3"]
+
+[ext_resource type="Script" path="res://Scripts/IA/Mannequin.gd" id="1_i0jya"]
+[ext_resource type="Texture2D" uid="uid://braqrvhbgboob" path="res://Sprites/Enemy-sheet.png" id="2_o8qke"]
+[ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="3_51m53"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2dk2"]
+atlas = ExtResource("2_o8qke")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww1k1"]
+atlas = ExtResource("2_o8qke")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1703"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2dk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww1k1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2dk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww1k1")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1pus"]
+radius = 21.0
+height = 48.0
+
+[node name="Mannequin" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_i0jya")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_w1703")
+animation = &"Idle"
+
+[node name="HealhSystem" type="Node" parent="."]
+script = ExtResource("3_51m53")
+_hp = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_b1pus")
+
+[connection signal="ApplyDamageEvent" from="HealhSystem" to="HealhSystem" method="_on_apply_damage_event"]
