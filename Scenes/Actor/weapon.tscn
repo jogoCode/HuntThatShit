@@ -68,9 +68,12 @@ sprite_frames = SubResource("SpriteFrames_bpqfu")
 animation = &"Shoot"
 frame_progress = 0.642993
 
-[node name="Oscillator" type="Node" parent="."]
+[node name="Oscillator" type="Node" parent="." node_paths=PackedStringArray("_target")]
 script = ExtResource("4_8vvlw")
+_target = NodePath("../AnimatedSprite2D")
+_mode = 1
 
 [connection signal="ChangedState" from="." to="." method="_on_changed_state"]
 [connection signal="Released" from="." to="." method="_on_released"]
 [connection signal="Shoot" from="." to="." method="_on_shoot"]
+[connection signal="SetVelocity" from="Oscillator" to="Oscillator" method="_on_set_velocity"]

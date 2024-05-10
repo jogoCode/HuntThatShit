@@ -11,16 +11,23 @@ var _spring:float = 918.5;
 var _displacement:float;
 var _damp:float = 16.3;
 
+#------- ScaleMode
+
+var _baseScale;
+
 enum modes{
 	ROTATION,
 	SCALE
 }
 
+func _ready():
+	match _mode:
+		modes.SCALE:
+			_baseScale = _target.scale;
+
 func _process(delta):
 	Oscillator(delta);
 	match _mode:
-		modes.ROTATION:
-			pass;
 		modes.SCALE:
 			ScaleMode();
 
@@ -37,7 +44,8 @@ func SetValues(velocity,spring,displacement,damp):
 	_damp = damp;
 
 func ScaleMode():
-	_target.scale =  Vector2(3,3)+ Vector2(_displacement,-_displacement) * 2;
+	_target.scale =  _baseScale+ Vector2(_displacement,-_displacement) * 2;
 
 func _on_set_velocity(amplitude):
+	print("uiyhuih")
 	_velocity = amplitude;

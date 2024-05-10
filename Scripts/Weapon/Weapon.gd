@@ -50,9 +50,12 @@ func _on_changed_state():
 
 func _on_shoot():
 	$AnimatedSprite2D.speed_scale = 1;
+	for nodes in get_children():
+		nodes.emit_signal("SetVelocity",randf_range(17,20));
 	$AnimatedSprite2D.play("Shoot");
 
 func _on_released():
+	#----------------Creation arrow -------------->
 	var arrow = _arrowScene.instantiate();
 	arrow._speed = arrow._speed*$AnimatedSprite2D.frame/2;
 	if($AnimatedSprite2D.frame == 4):
@@ -60,5 +63,8 @@ func _on_released():
 	arrow.transform = global_transform;
 	arrow._owner = get_parent();
 	createArrow.emit(arrow);
+	#-------------------- End -------------------
+	for nodes in get_children():
+		nodes.emit_signal("SetVelocity",20);
 	$AnimatedSprite2D.frame = 1;
 	$AnimatedSprite2D.speed_scale = 0;
