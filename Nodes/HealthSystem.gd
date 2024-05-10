@@ -9,8 +9,6 @@ class_name HealhSystem;
 signal ApplyDamageEvent(damage);
 signal Death();
 
-
-
 func _ready():
 	_maxHp = _hp;
 
@@ -23,8 +21,8 @@ func ApplyDamage(damage):
 	add_child(particle);
 	_hp-= damage;
 	_hp = clamp(_hp,0,_maxHp);
-
-
+	for nodes in get_parent().get_children():
+		nodes.emit_signal("SetVelocity",damage);
 
 func _on_apply_damage_event(damage):
 	ApplyDamage(damage);
