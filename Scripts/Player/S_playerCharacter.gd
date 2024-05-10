@@ -8,3 +8,8 @@ func _physics_process(delta): #Movement
 		velocity = lerp(velocity,Vector2.ZERO,delta*50);
 		velocity = Vector2(int(velocity.x),int(velocity.y));
 	move_and_slide();
+
+
+func _on_healh_system_death():
+	_collisionBox.disabled = true;
+	hide();

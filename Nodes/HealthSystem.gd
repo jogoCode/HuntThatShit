@@ -4,16 +4,23 @@ class_name HealhSystem;
 @export var _hp:int;
 @export var _maxHp:int;
 
+@export var _hitParticle:PackedScene;
+
 signal ApplyDamageEvent(damage);
+signal Death();
+
+
 
 func _ready():
 	_maxHp = _hp;
 
-
 func ApplyDamage(damage):
 	if(_hp <= 0):
-		get_parent().hide();
-	print(_hp)
+		Death.emit();
+	var particle = _hitParticle.instantiate();
+	particle.position = get_parent().global_position;
+	particle.emitting = true;
+	add_child(particle);
 	_hp-= damage;
 	_hp = clamp(_hp,0,_maxHp);
 

@@ -14,13 +14,14 @@ texture = ExtResource("3_obstj")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("2_1oyuw")]
 _target = NodePath("../PlayerCharacter")
-_moveSpeed = 2.0
+_moveSpeed = 1.0
 
 [node name="ArrowFactory" type="Node2D" parent="."]
 script = ExtResource("4_4hq65")
 metadata/_edit_lock_ = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_n6aj8")]
+SPEED = 150.0
 
 [node name="Mannequin" parent="." instance=ExtResource("5_j3bcm")]
 position = Vector2(281, 47)

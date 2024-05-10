@@ -108,3 +108,5 @@ _Weapon = NodePath("../Weapon")
 
 [node name="HealhSystem" type="Node" parent="."]
 script = ExtResource("1_wi2ah")
+
+[connection signal="Death" from="HealhSystem" to="." method="_on_healh_system_death"]

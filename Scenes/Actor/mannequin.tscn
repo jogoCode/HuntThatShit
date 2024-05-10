@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6vyxdgeh2jk3"]
+[gd_scene load_steps=9 format=3 uid="uid://b6vyxdgeh2jk3"]
 
 [ext_resource type="Script" path="res://Scripts/IA/Mannequin.gd" id="1_i0jya"]
 [ext_resource type="Texture2D" uid="uid://braqrvhbgboob" path="res://Sprites/Enemy-sheet.png" id="2_o8qke"]
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="3_51m53"]
+[ext_resource type="PackedScene" uid="uid://vuhu32km1h80" path="res://Particles/HitParticle.tscn" id="4_wfltu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2dk2"]
 atlas = ExtResource("2_o8qke")
@@ -54,8 +55,10 @@ animation = &"Idle"
 [node name="HealhSystem" type="Node" parent="."]
 script = ExtResource("3_51m53")
 _hp = 100
+_hitParticle = ExtResource("4_wfltu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b1pus")
 
 [connection signal="ApplyDamageEvent" from="HealhSystem" to="HealhSystem" method="_on_apply_damage_event"]
+[connection signal="Death" from="HealhSystem" to="." method="_on_healh_system_death"]

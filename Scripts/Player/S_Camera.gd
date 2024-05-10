@@ -9,5 +9,5 @@ func _ready():
 		print_debug("La camera n'as pas de cible");
 	
 func _process(delta):
-	position = lerp(position,_target.position,_moveSpeed*delta);
-	offset = lerp(offset,_target.velocity,_moveSpeed*0.5*delta);
+	position = lerp(position,_target.position,_moveSpeed);
+	offset = lerp(offset,_target.velocity,_moveSpeed*1*delta);
