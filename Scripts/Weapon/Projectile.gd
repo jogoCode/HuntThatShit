@@ -24,6 +24,9 @@ func _on_hurt_box_body_entered(body):
 
 
 func computeDamage(speed,baseDamage,distanceToEnemy)->float:
-	var finalDamage = speed*baseDamage/distanceToEnemy;
-	print('VFdamage = ',finalDamage)
-	return finalDamage;
+	if(speed >150):
+		var finalDamage = speed*baseDamage/distanceToEnemy;
+		print('VFdamage = ',finalDamage)
+		return finalDamage;
+	else:
+		return 1;

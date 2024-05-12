@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=17 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="1_wi2ah"]
 [ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_xhs42"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1fe7g0ggkwc4" path="res://Scenes/Actor/weapon.tscn" id="4_5o2q4"]
 [ext_resource type="Script" path="res://Scripts/Animations/SplitSpriteAnimator.gd" id="5_ncxme"]
 [ext_resource type="Script" path="res://Scripts/Player/S_inputManager.gd" id="6_55npj"]
+[ext_resource type="Script" path="res://Nodes/InventorySystem.gd" id="8_rdxrj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2a1b"]
 
@@ -109,4 +110,9 @@ _Weapon = NodePath("../Weapon")
 [node name="HealhSystem" type="Node" parent="."]
 script = ExtResource("1_wi2ah")
 
+[node name="InventorySystem" type="Node" parent="."]
+script = ExtResource("8_rdxrj")
+
+[connection signal="JustClicked" from="Weapon" to="InventorySystem" method="_on_weapon_just_clicked"]
 [connection signal="Death" from="HealhSystem" to="." method="_on_healh_system_death"]
+[connection signal="LoseArrowSignal" from="InventorySystem" to="Weapon" method="_on_inventory_system_lose_arrow_signal"]

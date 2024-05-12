@@ -19,5 +19,7 @@ func _physics_process(delta):
 	#------------------ Weapon inputs
 	if(Input.is_action_pressed("Shoot")):
 		_Weapon.emit_signal("Shoot");
+	if(Input.is_action_just_pressed("Shoot")):
+		_Weapon.emit_signal("JustClicked");
 	if(Input.is_action_just_released("Shoot")):
 		_Weapon.emit_signal("Released");

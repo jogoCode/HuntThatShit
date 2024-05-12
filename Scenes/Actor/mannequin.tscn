@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6vyxdgeh2jk3"]
+[gd_scene load_steps=11 format=3 uid="uid://b6vyxdgeh2jk3"]
 
 [ext_resource type="Script" path="res://Scripts/IA/Mannequin.gd" id="1_i0jya"]
-[ext_resource type="Texture2D" uid="uid://braqrvhbgboob" path="res://Sprites/Enemy-sheet.png" id="2_o8qke"]
+[ext_resource type="Texture2D" uid="uid://braqrvhbgboob" path="res://Sprites/Temp/Enemy-sheet.png" id="2_o8qke"]
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="3_51m53"]
 [ext_resource type="PackedScene" uid="uid://vuhu32km1h80" path="res://Particles/HitParticle.tscn" id="4_wfltu"]
 [ext_resource type="Script" path="res://Nodes/Oscillator.gd" id="5_1x84w"]
+[ext_resource type="Script" path="res://Scripts/Animations/SpriteAnimator.gd" id="6_db6v5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2dk2"]
 atlas = ExtResource("2_o8qke")
@@ -19,9 +20,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o2dk2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ww1k1")
 }],
 "loop": true,
 "name": &"Idle",
@@ -65,6 +63,12 @@ shape = SubResource("CapsuleShape2D_b1pus")
 script = ExtResource("5_1x84w")
 _target = NodePath("../AnimatedSprite2D")
 _mode = 1
+
+[node name="SpriteAnimator" type="Node2D" parent="." node_paths=PackedStringArray("_ownerCharacter", "_animatedSprite")]
+script = ExtResource("6_db6v5")
+_ownerCharacter = NodePath("..")
+_animatedSprite = [NodePath("../AnimatedSprite2D")]
+_canFlip = true
 
 [connection signal="ApplyDamageEvent" from="HealhSystem" to="HealhSystem" method="_on_apply_damage_event"]
 [connection signal="Death" from="HealhSystem" to="." method="_on_healh_system_death"]

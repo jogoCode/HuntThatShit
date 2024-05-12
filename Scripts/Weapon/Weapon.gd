@@ -2,11 +2,14 @@ extends Node2D
 
 signal Shoot(); 
 signal Released();
+signal JustClicked();
 signal ChangedState();
 
-@export var _arrowScene:PackedScene;
 
+@export var _arrowScene:PackedScene;
 var _direction:Vector2
+
+var _canCreateArrow:bool;
 
 signal createArrow(arrow);
 
@@ -21,6 +24,7 @@ func _ready():
 	_currentState = weaponState.ACTIVE;
 	$AnimatedSprite2D.frame = 1;
 	$AnimatedSprite2D.speed_scale = 0;
+	
 
 
 func _process(delta):
@@ -45,6 +49,20 @@ func EchangeState():
 		weaponState.ACTIVE:
 			weaponState.DISABLE;
 
+
+func CreateArrow():
+	if(_canCreateArrow):
+		#----------------Creation arrow -------------->
+		var arrow = _arrowScene.instantiate();
+		arrow._speed = arrow._speed*$AnimatedSprite2D.frame/4;
+		if($AnimatedSprite2D.frame == 4):
+			arrow._speed = arrow._speed*2;
+		arrow.transform = global_transform;
+		arrow._owner = get_parent();
+		Level._ArrowFactory.createArrow.emit(arrow);
+		_canCreateArrow =false;
+		#-------------------- End -------------------
+
 func _on_changed_state():
 	EchangeState();
 
@@ -55,16 +73,12 @@ func _on_shoot():
 	$AnimatedSprite2D.play("Shoot");
 
 func _on_released():
-	#----------------Creation arrow -------------->
-	var arrow = _arrowScene.instantiate();
-	arrow._speed = arrow._speed*$AnimatedSprite2D.frame/2;
-	if($AnimatedSprite2D.frame == 4):
-		arrow._speed = arrow._speed*2;
-	arrow.transform = global_transform;
-	arrow._owner = get_parent();
-	createArrow.emit(arrow);
-	#-------------------- End -------------------
+	CreateArrow();
 	for nodes in get_children():
 		nodes.emit_signal("SetVelocity",20);
 	$AnimatedSprite2D.frame = 1;
 	$AnimatedSprite2D.speed_scale = 0;
+
+
+func _on_inventory_system_lose_arrow_signal():
+	_canCreateArrow = true;

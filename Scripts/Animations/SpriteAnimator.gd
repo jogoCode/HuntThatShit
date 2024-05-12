@@ -33,7 +33,7 @@ func _process(delta):
 func ManageSpriteSpeed(delta)->void:
 	#Gestion de la vitesse d'animation en fonction de la vitesse de déplacement
 	for aSprites in _animatedSprite:
-		aSprites.speed_scale = velLength/2*delta;
+		aSprites.speed_scale = velLength*delta;
 
 func ManageSpriteDirection(target)->void: 
 	#Gestion de la direction du sprite

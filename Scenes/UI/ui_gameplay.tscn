@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2njw5ex0b83t"]
+
+[ext_resource type="Texture2D" uid="uid://cwxha2ihmmray" path="res://Sprites/Icons/tile_0119.png" id="1_0oc88"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_gameplay.gd" id="1_mfw3w"]
+
+[node name="UI_Gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mfw3w")
+
+[node name="ArrowControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="AspectRatioContainer" type="HBoxContainer" parent="ArrowControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = -0.4
+anchor_right = 0.6
+anchor_bottom = -0.4
+offset_right = 68.0
+offset_bottom = 35.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ArrowControl/AspectRatioContainer"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+texture = ExtResource("1_0oc88")
+
+[node name="ArrowText" type="Label" parent="ArrowControl/AspectRatioContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "1
+"
