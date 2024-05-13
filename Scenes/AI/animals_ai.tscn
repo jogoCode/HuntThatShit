@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxrf8eooi76ss"]
+
+[ext_resource type="Script" path="res://Addons/beehave/nodes/beehave_tree.gd" id="1_ivrtv"]
+[ext_resource type="Script" path="res://Addons/beehave/nodes/composites/sequence.gd" id="2_2240s"]
+[ext_resource type="Script" path="res://Addons/beehave/nodes/leaves/action.gd" id="3_umv7o"]
+
+[node name="AnimalsAI" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_ivrtv")
+blackboard = NodePath("@Node@38950")
+actor = NodePath("..")
+
+[node name="SequenceComposite" type="Node" parent="."]
+script = ExtResource("2_2240s")
+
+[node name="DeambulAction" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_umv7o")
+
+[node name="SearchFood" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_umv7o")

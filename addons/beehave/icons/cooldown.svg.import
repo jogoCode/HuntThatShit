@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ek6dpo25lvu2"
-path="res://.godot/imported/tilemap_packed.png-737a16328eb9bbc24d7d336f6ac51cc1.ctex"
+uid="uid://be5knhq17l7ie"
+path="res://.godot/imported/cooldown.svg-2071e614b3c421636d21c8a78f64f45e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/tilemap_packed.png"
-dest_files=["res://.godot/imported/tilemap_packed.png-737a16328eb9bbc24d7d336f6ac51cc1.ctex"]
+source_file="res://Addons/beehave/icons/cooldown.svg"
+dest_files=["res://.godot/imported/cooldown.svg-2071e614b3c421636d21c8a78f64f45e.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

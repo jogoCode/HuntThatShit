@@ -56,7 +56,7 @@ func CreateArrow():
 		var arrow = _arrowScene.instantiate();
 		arrow._speed = arrow._speed*$AnimatedSprite2D.frame/4;
 		if($AnimatedSprite2D.frame == 4):
-			arrow._speed = arrow._speed*2;
+			arrow._speed = arrow._speed*4;
 		arrow.transform = global_transform;
 		arrow._owner = get_parent();
 		Level._ArrowFactory.createArrow.emit(arrow);
