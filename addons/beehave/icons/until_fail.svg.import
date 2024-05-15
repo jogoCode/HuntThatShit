@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0o3a0lkqxgat"
-path="res://.godot/imported/until_fail.svg-79007131f8d75f8f6874e43d234baa85.ctex"
+path="res://.godot/imported/until_fail.svg-8015014c40e91d9c2668ec34d4118b8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/beehave/icons/until_fail.svg"
-dest_files=["res://.godot/imported/until_fail.svg-79007131f8d75f8f6874e43d234baa85.ctex"]
+source_file="res://addons/beehave/icons/until_fail.svg"
+dest_files=["res://.godot/imported/until_fail.svg-8015014c40e91d9c2668ec34d4118b8e.ctex"]
 
 [params]
 

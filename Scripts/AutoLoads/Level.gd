@@ -1,6 +1,6 @@
-extends Node
+extends Node2D
 
-
+@onready var _Random = RandomNumberGenerator.new();
 
 @onready var _CharacterScenes = load("res://Scenes/Actor/player_character.tscn");
 @onready var _CameraScenes = load("res://Nodes/C_Camera.tscn");
@@ -10,12 +10,10 @@ var _Camera;
 var _ArrowFactory;
 
 func _ready():
+	y_sort_enabled = true;
 	#--- Init ArrowFactory---------------------------
 	_ArrowFactory = _ArrowFactoryScenes.instantiate();
 	add_child(_ArrowFactory);
-	#--- Init Character------------------------------
-	_Character = _CharacterScenes.instantiate();
-	add_child(_Character);
 	#--- Init Camera---------------------------------
 	_Camera = _CameraScenes.instantiate();
 	_Camera._target = _Character;
@@ -24,4 +22,10 @@ func _ready():
 
 
 func _process(delta):
-	pass
+	if(_Character == null):
+		#--- Init Character------------------------------
+		_Character = _CharacterScenes.instantiate();
+		var main = get_node("/root/Main");
+		if(main!= null):
+			main.add_child(_Character);
+			_Camera._target = _Character;

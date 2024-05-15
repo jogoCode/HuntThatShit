@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://863s568sneja"
-path="res://.godot/imported/category_composite.svg-43f66e63a7ccfa5ac8ec6da0583b3246.ctex"
+uid="uid://daltt773ck7xc"
+path="res://.godot/imported/Arbre_MMs-sheet.png-f2673710536af57920d9e54ceb8b849b.ctex"
 metadata={
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/beehave/icons/category_composite.svg"
-dest_files=["res://.godot/imported/category_composite.svg-43f66e63a7ccfa5ac8ec6da0583b3246.ctex"]
+source_file="res://Sprites/Objects/Arbre_MMs-sheet.png"
+dest_files=["res://.godot/imported/Arbre_MMs-sheet.png-f2673710536af57920d9e54ceb8b849b.ctex"]
 
 [params]
 
@@ -33,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bah77esichnyx"
-path="res://.godot/imported/horizontal_layout.svg-c0e4bc96655d4bba8ea8e6cd0be374c2.ctex"
+path="res://.godot/imported/horizontal_layout.svg-d2a7af351e44f9bf61d0c938b6f47fac.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Addons/beehave/debug/icons/horizontal_layout.svg"
-dest_files=["res://.godot/imported/horizontal_layout.svg-c0e4bc96655d4bba8ea8e6cd0be374c2.ctex"]
+source_file="res://addons/beehave/debug/icons/horizontal_layout.svg"
+dest_files=["res://.godot/imported/horizontal_layout.svg-d2a7af351e44f9bf61d0c938b6f47fac.ctex"]
 
 [params]
 

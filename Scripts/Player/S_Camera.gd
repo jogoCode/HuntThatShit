@@ -10,6 +10,7 @@ func _ready():
 	
 	
 func _process(delta):
-	position = lerp(position,_target.position,_moveSpeed);
-	offset = lerp(offset,_target.velocity,_moveSpeed*1*delta);
-	#print(_target.name)
+	if(_target != null):
+		position = lerp(position,_target.position,_moveSpeed);
+		offset = lerp(offset,_target.velocity,_moveSpeed*1*delta);
+		#print(_target.name)
