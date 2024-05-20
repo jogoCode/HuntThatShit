@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=18 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="1_wi2ah"]
 [ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_xhs42"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Animations/SplitSpriteAnimator.gd" id="5_ncxme"]
 [ext_resource type="Script" path="res://Scripts/Player/S_inputManager.gd" id="6_55npj"]
 [ext_resource type="Script" path="res://Nodes/InventorySystem.gd" id="8_rdxrj"]
+[ext_resource type="Texture2D" uid="uid://yqppk72ncs4l" path="res://Sprites/Objects/Shadow.png" id="9_lsi3e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2a1b"]
 radius = 6.0
@@ -80,6 +81,12 @@ animations = [{
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_xhs42")
 SPEED = 150.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.219608)
+position = Vector2(0, 8)
+scale = Vector2(0.227, 0.078)
+texture = ExtResource("9_lsi3e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

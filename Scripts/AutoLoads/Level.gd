@@ -8,24 +8,26 @@ extends Node2D
 var _Character;
 var _Camera;
 var _ArrowFactory;
+var main;
 
 func _ready():
 	y_sort_enabled = true;
-	#--- Init ArrowFactory---------------------------
+	#-------------- Init ArrowFactory---------------------------
 	_ArrowFactory = _ArrowFactoryScenes.instantiate();
 	add_child(_ArrowFactory);
-	#--- Init Camera---------------------------------
+	#-------------- Init Camera---------------------------------
 	_Camera = _CameraScenes.instantiate();
 	_Camera._target = _Character;
 	add_child(_Camera);
 	_Camera.is_current();
+	# Set main Scene-----------------------------------------------------------
+	main = get_node("/root/Main");
 
 
 func _process(delta):
 	if(_Character == null):
-		#--- Init Character------------------------------
+		#----------------- Init Character------------------------------
 		_Character = _CharacterScenes.instantiate();
-		var main = get_node("/root/Main");
 		if(main!= null):
 			main.add_child(_Character);
 			_Camera._target = _Character;

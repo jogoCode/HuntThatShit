@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://darn1lluv21sw"]
+[gd_scene load_steps=10 format=3 uid="uid://darn1lluv21sw"]
 
 [ext_resource type="PackedScene" uid="uid://clsauqg2gbkek" path="res://Scenes/Actor/arrow_factory.tscn" id="2_ntmxo"]
 [ext_resource type="PackedScene" uid="uid://c2njw5ex0b83t" path="res://Scenes/UI/ui_gameplay.tscn" id="4_mxijn"]
 [ext_resource type="PackedScene" uid="uid://bty12myk1pulu" path="res://Scenes/Actor/tree.tscn" id="5_bwsbv"]
 [ext_resource type="PackedScene" uid="uid://b6vyxdgeh2jk3" path="res://Scenes/Actor/mannequin.tscn" id="5_j3bcm"]
 [ext_resource type="Texture2D" uid="uid://ek6dpo25lvu2" path="res://Sprites/Tiles/tilemap_packed.png" id="5_tkotx"]
+[ext_resource type="PackedScene" uid="uid://c2y0cll4rotcm" path="res://Scenes/Objects/food.tscn" id="6_1rjda"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nl7c2"]
 texture = ExtResource("5_tkotx")
@@ -144,6 +145,12 @@ texture = ExtResource("5_tkotx")
 [sub_resource type="TileSet" id="TileSet_0g3qg"]
 sources/0 = SubResource("TileSetAtlasSource_nl7c2")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lv63e"]
+vertices = PackedVector2Array(1174, 878, -2319, 878, -2315, -1077, 1168, -1086)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2325, -1087, -2329, 888, 1184, 888, 1178, -1097)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
@@ -160,7 +167,7 @@ layer_0/tile_data = PackedInt32Array(-589874, 0, 0, -589873, 0, 0, -524337, 0, 0
 
 [node name="Mannequin" parent="." instance=ExtResource("5_j3bcm")]
 position = Vector2(281, 47)
-SPEED = 50.0
+SPEED = 100.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -188,3 +195,28 @@ _animatedSprite = [NodePath("Top")]
 position = Vector2(-394, 394)
 scale = Vector2(0.5, 0.5)
 _animatedSprite = [NodePath("Top")]
+
+[node name="Foods" type="Node2D" parent="."]
+position = Vector2(503, 586)
+
+[node name="Food" parent="Foods" instance=ExtResource("6_1rjda")]
+
+[node name="Food2" parent="Foods" instance=ExtResource("6_1rjda")]
+position = Vector2(-829, -469)
+
+[node name="Food3" parent="Foods" instance=ExtResource("6_1rjda")]
+position = Vector2(-703, -1246)
+
+[node name="Food4" parent="Foods" instance=ExtResource("6_1rjda")]
+position = Vector2(-2603, -1142)
+
+[node name="Pickable" parent="Foods/Food4" index="3"]
+_type = "Food45"
+
+[node name="Food5" parent="Foods" instance=ExtResource("6_1rjda")]
+position = Vector2(-1716, -472)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_lv63e")
+
+[editable path="Foods/Food4"]

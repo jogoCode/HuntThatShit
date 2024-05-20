@@ -1,5 +1,5 @@
 extends Node
-class_name HealhSystem;
+class_name HealthSystem;
 
 @export var _hp:int;
 @export var _maxHp:int;
@@ -13,11 +13,11 @@ func _ready():
 	_maxHp = _hp;
 
 func ApplyDamage(damage):
-	if(_hp <= 0):
-		Death.emit();
 	createFx();
 	_hp-= damage;
 	_hp = clamp(_hp,0,_maxHp);
+	if(_hp <= 0):
+		Death.emit();
 	for nodes in get_parent().get_children():
 		nodes.emit_signal("SetVelocity",damage);
 

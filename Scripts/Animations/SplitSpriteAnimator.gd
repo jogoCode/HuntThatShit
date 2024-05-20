@@ -12,7 +12,7 @@ func _process(delta):
 
 func ManageSpriteDirection(target)->void:
 	_target = get_global_mouse_position();
-	 # Retourne le partie amovible
+	 # Retourne la partie amovible
 	if(_target.x < global_position.x):
 		for turnPart in _turnParts:
 			turnPart.flip_h = true;

@@ -8,4 +8,5 @@ func _ready():
 	var random = _rng.randf_range(0,_animatedSprite[0].sprite_frames.get_frame_count("versions"));
 	for visual in _animatedSprite:
 		visual.frame = random;
+	scale = Vector2(0.5,0.5);
 

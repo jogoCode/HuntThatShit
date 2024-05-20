@@ -1,19 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxrf8eooi76ss"]
+[gd_scene load_steps=7 format=3 uid="uid://dxrf8eooi76ss"]
 
 [ext_resource type="Script" path="res://Addons/beehave/nodes/beehave_tree.gd" id="1_ivrtv"]
-[ext_resource type="Script" path="res://Addons/beehave/nodes/composites/sequence.gd" id="2_2240s"]
-[ext_resource type="Script" path="res://Addons/beehave/nodes/leaves/action.gd" id="3_umv7o"]
+[ext_resource type="Script" path="res://Addons/beehave/nodes/composites/sequence_star.gd" id="2_2c533"]
+[ext_resource type="Script" path="res://Scripts/IA/Animals/DeambulAction.gd" id="3_5fj64"]
+[ext_resource type="Script" path="res://Addons/beehave/nodes/decorators/delayer.gd" id="4_oxd7y"]
+[ext_resource type="Script" path="res://Scripts/IA/Animals/CheckHungerCondition.gd" id="6_4rnkx"]
+[ext_resource type="Script" path="res://Scripts/IA/Animals/SearchFood.gd" id="6_jhwu6"]
 
 [node name="AnimalsAI" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_ivrtv")
-blackboard = NodePath("@Node@38950")
-actor = NodePath("..")
+blackboard = NodePath("@Node@50713")
+actor = NodePath("")
 
-[node name="SequenceComposite" type="Node" parent="."]
-script = ExtResource("2_2240s")
+[node name="SequenceStarComposite" type="Node" parent="."]
+script = ExtResource("2_2c533")
 
-[node name="DeambulAction" type="Node" parent="SequenceComposite"]
-script = ExtResource("3_umv7o")
+[node name="DelayDecorator" type="Node" parent="SequenceStarComposite"]
+script = ExtResource("4_oxd7y")
+wait_time = 2.0
 
-[node name="SearchFood" type="Node" parent="SequenceComposite"]
-script = ExtResource("3_umv7o")
+[node name="DeambulAction" type="Node" parent="SequenceStarComposite/DelayDecorator"]
+script = ExtResource("3_5fj64")
+
+[node name="ConditionToSearchFood" type="Node" parent="SequenceStarComposite"]
+script = ExtResource("6_4rnkx")
+
+[node name="SearchFood" type="Node" parent="SequenceStarComposite"]
+script = ExtResource("6_jhwu6")

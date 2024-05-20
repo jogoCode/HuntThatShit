@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2y0cll4rotcm"]
+
+[ext_resource type="Script" path="res://Scripts/Pickable.gd" id="1_4o425"]
+[ext_resource type="Texture2D" uid="uid://cw4o4oqq30vak" path="res://Sprites/Tiles/Tile_map(Vecto)).png" id="1_bptea"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpqe1"]
+atlas = ExtResource("1_bptea")
+region = Rect2(360, 280, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ruafv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpqe1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x28x2"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gxse"]
+radius = 19.95
+
+[node name="Food" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ruafv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x28x2")
+debug_color = Color(0, 0.643137, 0.278431, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7gxse")
+debug_color = Color(0.996078, 0, 0.223529, 0.419608)
+
+[node name="Pickable" type="Node2D" parent="."]
+script = ExtResource("1_4o425")
+_type = "Food"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

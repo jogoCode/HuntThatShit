@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bn6swqo7is65g"
-path="res://.godot/imported/delayer.svg-6f92c97f61b1eb8679428f438e6b08c7.ctex"
+path="res://.godot/imported/delayer.svg-7fc29817e81f2c2e2198adc701e23e0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/beehave/icons/delayer.svg"
-dest_files=["res://.godot/imported/delayer.svg-6f92c97f61b1eb8679428f438e6b08c7.ctex"]
+source_file="res://Addons/beehave/icons/delayer.svg"
+dest_files=["res://.godot/imported/delayer.svg-7fc29817e81f2c2e2198adc701e23e0e.ctex"]
 
 [params]
 

@@ -6,8 +6,8 @@ class_name Character;
 
 var _direction:Vector2; 
 
-func _ready():
-	pass;
+func  _ready():
+	pass
 
 func _process(delta):
 	pass
