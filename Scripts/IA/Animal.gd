@@ -11,19 +11,25 @@ class_name IA
 var _target:Node2D;
 
 func _ready():
+	SPEED = _Stats._speed;
 	#-------------------- HealthSystem------------
 	_healthSystem._hp = _Stats._hp;
 	_healthSystem._maxHp = _Stats._hp;
 	#-------------------- HungerSystem------------
 	_hungerSystem._hunger = _Stats._hunger;
+	_hungerSystem._consumeValue = _Stats._consumeHunger;
 	_hungerSystem._foodType = _Stats._food;
 
 func _physics_process(delta):
 	move_and_slide();
 
 func _on_healh_system_death():
-	_collisionBox.queue_free();
-	hide();
+	_collisionBox.disabled = true;
+	#_collisionBox.queue_free()
+	SPEED = 0;
+	velocity = Vector2.ZERO;
+	#hide();
+	#queue_free();
 
 func _get_configuration_warnings():
 	if( !_hungerSystem ):

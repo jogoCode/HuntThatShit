@@ -45,7 +45,7 @@ func SetValues(velocity,spring,displacement,damp):
 
 func ScaleMode():
 	_target.scale =  _baseScale+ Vector2(_displacement,-_displacement) * 2;
-	_target.scale = clamp(_target.scale,Vector2.ZERO,Vector2(500,500));
+	_target.scale = clamp(_target.scale,Vector2(0,0),Vector2(500,500));
 
 func _on_set_velocity(amplitude):
 	_velocity = amplitude;

@@ -13,13 +13,14 @@ func _ready():
 	_maxHp = _hp;
 
 func ApplyDamage(damage):
-	createFx();
-	_hp-= damage;
-	_hp = clamp(_hp,0,_maxHp);
 	if(_hp <= 0):
 		Death.emit();
-	for nodes in get_parent().get_children():
-		nodes.emit_signal("SetVelocity",damage);
+		return;
+	else:
+		_hp-= damage;
+		_hp = clamp(_hp,0,_maxHp);
+		for nodes in get_parent().get_children():
+			nodes.emit_signal("SetVelocity",damage);
 
 func createFx():
 	var particle = _hitParticle.instantiate();
@@ -29,3 +30,8 @@ func createFx():
 
 func _on_apply_damage_event(damage):
 	ApplyDamage(damage);
+	createFx();
+
+
+func _on_hunger_system_hunger_is_empty():
+	ApplyDamage(1);

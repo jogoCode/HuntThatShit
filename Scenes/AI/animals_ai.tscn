@@ -1,29 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxrf8eooi76ss"]
+[gd_scene load_steps=8 format=3 uid="uid://dxrf8eooi76ss"]
 
 [ext_resource type="Script" path="res://Addons/beehave/nodes/beehave_tree.gd" id="1_ivrtv"]
-[ext_resource type="Script" path="res://Addons/beehave/nodes/composites/sequence_star.gd" id="2_2c533"]
+[ext_resource type="Script" path="res://Addons/beehave/nodes/composites/sequence.gd" id="2_pn5oj"]
 [ext_resource type="Script" path="res://Scripts/IA/Animals/DeambulAction.gd" id="3_5fj64"]
+[ext_resource type="Script" path="res://Scripts/IA/Animals/CheckIsAliveCondition.gd" id="3_28uh8"]
 [ext_resource type="Script" path="res://Addons/beehave/nodes/decorators/delayer.gd" id="4_oxd7y"]
 [ext_resource type="Script" path="res://Scripts/IA/Animals/CheckHungerCondition.gd" id="6_4rnkx"]
 [ext_resource type="Script" path="res://Scripts/IA/Animals/SearchFood.gd" id="6_jhwu6"]
 
 [node name="AnimalsAI" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_ivrtv")
-blackboard = NodePath("@Node@50713")
+blackboard = NodePath("@Node@17572")
 actor = NodePath("")
 
-[node name="SequenceStarComposite" type="Node" parent="."]
-script = ExtResource("2_2c533")
+[node name="Sequence" type="Node" parent="."]
+script = ExtResource("2_pn5oj")
 
-[node name="DelayDecorator" type="Node" parent="SequenceStarComposite"]
+[node name="ConditionIsAlive" type="Node" parent="Sequence"]
+script = ExtResource("3_28uh8")
+
+[node name="DelayDecorator" type="Node" parent="Sequence"]
 script = ExtResource("4_oxd7y")
 wait_time = 2.0
 
-[node name="DeambulAction" type="Node" parent="SequenceStarComposite/DelayDecorator"]
+[node name="DeambulAction" type="Node" parent="Sequence/DelayDecorator"]
 script = ExtResource("3_5fj64")
 
-[node name="ConditionToSearchFood" type="Node" parent="SequenceStarComposite"]
+[node name="FoodSequence" type="Node" parent="Sequence"]
+script = ExtResource("2_pn5oj")
+
+[node name="ConditionToSearchFood" type="Node" parent="Sequence/FoodSequence"]
 script = ExtResource("6_4rnkx")
 
-[node name="SearchFood" type="Node" parent="SequenceStarComposite"]
+[node name="SearchFood" type="Node" parent="Sequence/FoodSequence"]
 script = ExtResource("6_jhwu6")

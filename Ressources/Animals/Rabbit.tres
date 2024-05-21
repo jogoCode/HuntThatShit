@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="AnimalsCharac" load_steps=2 format=3 uid="uid://v4r24bbgjqt6"]
 
-[ext_resource type="Script" path="res://Scripts/Ressources/AnimalCharact.gd" id="1_3drg1"]
+[ext_resource type="Script" path="res://Ressources/AnimalCharact.gd" id="1_a23m1"]
 
 [resource]
-script = ExtResource("1_3drg1")
+script = ExtResource("1_a23m1")
 _name = "Lapin"
 _desc = "Il adore les carrotes"
-_hp = 150.0
+_speed = 25.0
+_hp = 50.0
 _hunger = 25.0
+_consumeHunger = 0.5
 _food = "Food"

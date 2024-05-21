@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgjq1wy3h3251"]
+[gd_scene load_steps=20 format=3 uid="uid://cgjq1wy3h3251"]
 
 [ext_resource type="Script" path="res://Nodes/HealthSystem.gd" id="1_wi2ah"]
 [ext_resource type="Script" path="res://Scripts/Player/S_playerCharacter.gd" id="1_xhs42"]
 [ext_resource type="Texture2D" uid="uid://b1cfitwycfiol" path="res://Sprites/BodySplit/Body.png" id="2_khuxu"]
 [ext_resource type="Texture2D" uid="uid://dn5ww0k6xtocn" path="res://Sprites/BodySplit/Foot.png" id="3_pe0fk"]
+[ext_resource type="Texture2D" uid="uid://cg03p3lpi662i" path="res://Sprites/Temp/Player-sheet.png" id="4_2c3ba"]
 [ext_resource type="PackedScene" uid="uid://b1fe7g0ggkwc4" path="res://Scenes/Actor/weapon.tscn" id="4_5o2q4"]
 [ext_resource type="Script" path="res://Scripts/Animations/SplitSpriteAnimator.gd" id="5_ncxme"]
 [ext_resource type="Script" path="res://Scripts/Player/S_inputManager.gd" id="6_55npj"]
@@ -34,15 +35,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v3mhm")
+"texture": SubResource("AtlasTexture_y03vs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y03vs")
+"texture": SubResource("AtlasTexture_v3mhm")
 }],
 "loop": true,
 "name": &"Walk",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndeno"]
+atlas = ExtResource("4_2c3ba")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wu3t"]
 atlas = ExtResource("3_pe0fk")
@@ -58,6 +63,14 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ux0p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndeno")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2wu3t")
@@ -79,6 +92,7 @@ animations = [{
 }]
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_xhs42")
 SPEED = 150.0
 
@@ -97,7 +111,8 @@ texture_filter = 1
 position = Vector2(0, -12)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_3bl43")
-animation = &"Idle"
+animation = &"Walk"
+frame_progress = 0.0616663
 
 [node name="FootAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -105,6 +120,7 @@ position = Vector2(0, -12)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1ux0p")
 animation = &"Walk"
+frame_progress = 0.864655
 
 [node name="Weapon" parent="." instance=ExtResource("4_5o2q4")]
 position = Vector2(0, -12)

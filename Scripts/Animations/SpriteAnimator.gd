@@ -18,13 +18,14 @@ func _ready():
 			print_debug("animatedSprite missing !")
 
 func _process(delta):
-	velLength = _ownerCharacter.velocity.length();
-	if(velLength == 0):
-		for aSprites in _animatedSprite:
-			aSprites.play("Idle");
-	if(velLength != 0):
-		for aSprites in _animatedSprite:
-			aSprites.play("Walk");
+	if _ownerCharacter.GetActualLifeState() == Character.LifeState.ALIVE:
+		velLength = _ownerCharacter.velocity.length();
+		if(velLength == 0):
+			for aSprites in _animatedSprite:
+				aSprites.play("Idle");
+		if(velLength != 0):
+			for aSprites in _animatedSprite:
+				aSprites.play("Walk");
 	ManageSpriteSpeed(delta);
 	if(_canFlip):
 		pass
@@ -33,7 +34,7 @@ func _process(delta):
 func ManageSpriteSpeed(delta)->void:
 	#Gestion de la vitesse d'animation en fonction de la vitesse de déplacement
 	for aSprites in _animatedSprite:
-		aSprites.speed_scale = velLength*delta;
+		aSprites.speed_scale = velLength*2*delta;
 
 func ManageSpriteDirection(target)->void: 
 	#Gestion de la direction du sprite
@@ -43,3 +44,9 @@ func ManageSpriteDirection(target)->void:
 	if(_ownerCharacter.velocity.x > 0):
 		for aSprites in _animatedSprite:
 			aSprites.flip_h = false;
+
+
+func _on_healh_system_death():
+	_ownerCharacter._actualState = 1;
+	for aSprites in _animatedSprite:
+		aSprites.play("Die");

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AnimalsCharac" load_steps=2 format=3 uid="uid://dm57261bhbv1d"]
+
+[ext_resource type="Script" path="res://Ressources/AnimalCharact.gd" id="1_kv3pr"]
+
+[resource]
+script = ExtResource("1_kv3pr")
+_name = "Fox"
+_desc = "Il mange les lapins"
+_speed = 150.0
+_hp = 50.0
+_hunger = 150.0
+_consumeHunger = 1.0
+_food = "Lapin"
