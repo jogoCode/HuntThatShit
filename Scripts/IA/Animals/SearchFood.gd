@@ -21,7 +21,7 @@ func goToFood(actor):
 			if(actor._target is Character):
 				print("OOOOHHH YEAAAAH");
 				for children in actor._target.get_children():
-					children.emit_signal("ApplyDamageEvent",50);
+					children.emit_signal("ApplyDamageEvent",500);
 			else:
 				actor._target.queue_free();
 			actor._hungerSystem.AddHunger(100);	

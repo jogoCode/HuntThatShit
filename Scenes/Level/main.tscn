@@ -168,14 +168,17 @@ layer_0/tile_data = PackedInt32Array(-589874, 0, 0, -589873, 0, 0, -524337, 0, 0
 
 [node name="Mannequin" parent="." instance=ExtResource("5_j3bcm")]
 position = Vector2(281, 47)
-SPEED = 1.0
 
 [node name="AnimalsAI" parent="Mannequin" index="1" node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@97538")
+enabled = true
+tick_rate = 1
+actor_node_path = NodePath("")
+process_thread = 1
+blackboard = NodePath("@Node@17574")
 
 [node name="HealhSystem" parent="Mannequin" index="5"]
-_hp = 50.0
-_maxHp = 50.0
+_hp = 0
+_maxHp = 0
 
 [node name="Pickable" parent="Mannequin" index="10"]
 _type = "Lapin"
@@ -186,11 +189,18 @@ _Stats = ExtResource("4_83x63")
 SPEED = 150.0
 
 [node name="AnimalsAI" parent="Mannequin2" index="1" node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@97539")
+enabled = true
+tick_rate = 1
+actor_node_path = NodePath("")
+process_thread = 1
+blackboard = NodePath("@Node@17575")
 
 [node name="HealhSystem" parent="Mannequin2" index="5"]
-_hp = 50.0
-_maxHp = 50.0
+_hp = 0
+_maxHp = 0
+
+[node name="HungerSystem" parent="Mannequin2" index="6"]
+_hunger = 150.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

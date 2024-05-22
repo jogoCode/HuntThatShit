@@ -13,12 +13,12 @@ func _ready():
 	_maxHp = _hp;
 
 func ApplyDamage(damage):
+	_hp-= damage;
+	_hp = clamp(_hp,0,_maxHp);
 	if(_hp <= 0):
 		Death.emit();
 		return;
 	else:
-		_hp-= damage;
-		_hp = clamp(_hp,0,_maxHp);
 		for nodes in get_parent().get_children():
 			nodes.emit_signal("SetVelocity",damage);
 

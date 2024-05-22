@@ -10,7 +10,8 @@
 
 [node name="AnimalsAI" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_ivrtv")
-blackboard = NodePath("@Node@17572")
+blackboard = NodePath("@Node@18832")
+custom_monitor = null
 actor = NodePath("")
 
 [node name="Sequence" type="Node" parent="."]

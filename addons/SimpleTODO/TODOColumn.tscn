@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bga0tfe37uva2"]
 
-[ext_resource type="Script" path="res://addons/SimpleTODO/TODOColumn.gd" id="1_6bfuv"]
-[ext_resource type="PackedScene" uid="uid://cwcwdmxxpf65e" path="res://addons/SimpleTODO/ColumnHeader.tscn" id="2_0fkhl"]
+[ext_resource type="Script" path="res://Addons/SimpleTODO/TODOColumn.gd" id="1_6bfuv"]
+[ext_resource type="PackedScene" uid="uid://cwcwdmxxpf65e" path="res://Addons/SimpleTODO/ColumnHeader.tscn" id="2_0fkhl"]
 
 [sub_resource type="StyleBoxFlat" id="3"]
 content_margin_left = 4.0

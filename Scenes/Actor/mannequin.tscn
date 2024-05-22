@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6vyxdgeh2jk3"]
+[gd_scene load_steps=20 format=3 uid="uid://b6vyxdgeh2jk3"]
 
 [ext_resource type="Script" path="res://Scripts/IA/Animal.gd" id="1_03v4t"]
 [ext_resource type="Resource" uid="uid://v4r24bbgjqt6" path="res://Ressources/Animals/Rabbit.tres" id="2_5w1b4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Nodes/HungerSystem.gd" id="8_0amy2"]
 [ext_resource type="Texture2D" uid="uid://yqppk72ncs4l" path="res://Sprites/Objects/Shadow.png" id="10_51a2n"]
 [ext_resource type="Script" path="res://Scripts/Pickable.gd" id="11_50tha"]
+[ext_resource type="Script" path="res://Nodes/AtkSystem.gd" id="11_hwqhq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi1iv"]
 atlas = ExtResource("2_o8qke")
@@ -58,11 +59,15 @@ animations = [{
 radius = 12.0
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_55w7i"]
+radius = 52.469
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7yun"]
 radius = 10000.0
 
 [node name="Mannequin" type="CharacterBody2D" node_paths=PackedStringArray("_hungerSystem", "_healthSystem", "_nav")]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_03v4t")
 _Stats = ExtResource("2_5w1b4")
 _hungerSystem = NodePath("HungerSystem")
@@ -76,9 +81,8 @@ position = Vector2(0, 10)
 scale = Vector2(0.237, 0.081)
 texture = ExtResource("10_51a2n")
 
-[node name="AnimalsAI" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_8ivd4")]
-blackboard = NodePath("@Node@112110")
-actor = NodePath("..")
+[node name="AnimalsAI" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_8ivd4")]
+blackboard = NodePath("@Node@19544")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -100,8 +104,6 @@ _canFlip = true
 
 [node name="HealhSystem" type="Node" parent="."]
 script = ExtResource("3_51m53")
-_hp = 50.0
-_maxHp = 50.0
 _hitParticle = ExtResource("4_wfltu")
 
 [node name="HungerSystem" type="Node" parent="." node_paths=PackedStringArray("_hungerField")]
@@ -114,12 +116,22 @@ script = ExtResource("5_1x84w")
 _target = NodePath("../AnimatedSprite2D")
 _mode = 1
 
+[node name="AtkSystem" type="Node" parent="."]
+script = ExtResource("11_hwqhq")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_55w7i")
+debug_color = Color(0.992157, 0, 0.262745, 0.419608)
+
 [node name="HungerField" type="Area2D" parent="."]
 collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HungerField"]
 shape = SubResource("CircleShape2D_h7yun")
+debug_color = Color(0.709804, 0.482353, 0.180392, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true

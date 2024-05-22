@@ -8,6 +8,6 @@ _name = "Fox"
 _desc = "Il mange les lapins"
 _speed = 150.0
 _hp = 50.0
-_hunger = 150.0
+_hunger = 3.0
 _consumeHunger = 1.0
 _food = "Lapin"
